@@ -197,6 +197,8 @@ style this element.
       if (oldValue == undefined || value === oldValue)
         return;
 
+      var that = this;
+
       //Ensure value is a string
       value = value ? value.toString() : '';
 
@@ -236,7 +238,9 @@ style this element.
       this.updateValueAndPreserveCaret(formattedValue.trim());
 
       // Advance or back up the caret based on the change that happened before it.
-      this.$.input.selectionStart = this.$.input.selectionEnd = start + dashesDifference;
+      setTimeout(function() {
+        that.$.input.selectionStart = that.$.input.selectionEnd = start + dashesDifference;
+      }, 10);
 
       this._handleAutoValidate();
     },
